@@ -1,0 +1,83 @@
+body
+{
+    height:100vh;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #505050;
+}
+
+.topbar
+{
+    position: fixed;
+    height: 63px;
+    background-color: black;
+    width: 800px;
+}
+
+.logo
+{
+    float: left;
+    padding: 0px 10px;
+    line-height: 50px;
+}
+
+.nav
+{
+    float: right;
+    padding-top: 20px;
+}
+
+.nav a
+{
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: white;
+    font-family: Georgia;
+}
+
+.nav a:hover
+{
+  background: #808080;
+}
+
+.content
+{
+    padding: 75px 10px;
+    height:100vh;
+    background-color: lightgrey;
+    font-size: 17px;
+    font-family: Georgia;
+    display: flex;
+}
+
+.HeaderContact
+{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2E8B57;
+}
+
+.left {
+    flex: 60%;
+}
+
+.right {
+    flex: 40%;
+}
+
+.contact
+{
+    text-align: center;
+}
+
+footer
+{
+    position: absolute;
+    text-align: left;
+    bottom: 0;
+    font-size: small;
+}

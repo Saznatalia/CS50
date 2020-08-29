@@ -1,0 +1,161 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Me
+{% endblock %}
+
+{% block main %}
+    <form action="/me" method="post" class="me" id="me">
+        <h1 style="padding-top: 19%; -webkit-text-stroke: 1px white;">TRACKER</h1>
+        <div class="ui-widget" style="background-color: #dcdcdc; min-height: 130px; text-align: center; padding-bottom: 20px">
+        <br/>
+        LOG YOUR MEASUREMENTS
+        <br/><br/>
+        <span>Weight:</span><input id="weight" name="weight" placeholder="Add Weight, kg" type="text" style="left-pading: 5px; min-width: 40px; position: relative">
+        <br/><br/>
+        <span>Chest:</span><input id="chest" name="chest" placeholder="Add Chest, sm" type="text" style="left-pading: 5px; min-width: 40px; position: relative">
+        <br/><br/>
+        <span>Waist:</span><input id="waist" name="waist" placeholder="Add Waist, sm" type="text" style="left-pading: 5px; min-width: 40px; position: relative">
+        <br/><br/>
+        <span>Hips:</span><input id="hips" name="hips" placeholder="Add Hips, sm" type="text" style="left-pading: 5px; min-width: 40px; position: relative">
+        <br/>
+        <br/>
+        <button style="background-color: #90EE90; font-weight: bold;margin-left: 30px" type="submit">Add Your Details</button>
+        <br/>
+        </div>
+        <div id="chart" class="ui-widget" style="text-align: center; margin: 0 auto"></div>
+    </form>
+
+
+    <script>
+    // Draw a graph
+    var Measurements = {{ measurements|safe }};
+    google.charts.load('current', {packages: ['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+        data = new google.visualization.DataTable();
+        data.addColumn('string', 'Date');
+        data.addColumn('number', 'Weight');
+        data.addColumn('number', 'Chest');
+        data.addColumn('number', 'Waist');
+        data.addColumn('number', 'Hips');
+        newData = []
+        for (var i = 0; i < Measurements.length; i++) {
+            newData.push([Measurements[i]['date'], Measurements[i]['weight'], Measurements[i]['chest'], Measurements[i]['waist'], Measurements[i]['hips']]);
+        }
+        console.log(newData);
+
+        // determine the number of rows and columns.
+        var numRows = newData.length;
+        var numCols = newData[0].length;
+
+        // all other columns are of type 'number'.
+        for (var i = 0; i < numRows; i++) {
+            data.addRow(newData[i]);
+        }
+
+        var options = {
+            title: 'Your Progress',
+            hAxis: {
+                title: 'Date'
+            },
+            vAxis: {
+                title: 'Weight'
+            },
+        };
+
+        // var chart = new google.visualization.LineChart(document.getElementById('chart'));
+        var chart = new google.charts.Line(document.getElementById('chart'));
+        chart.draw(data, google.charts.Line.convertOptions(options));
+        function resizeChart () {
+            chart.draw(data, google.charts.Line.convertOptions(options));
+        }
+        if (document.addEventListener) {
+            window.addEventListener('resize', resizeChart);
+        }
+        else if (document.attachEvent) {
+            window.attachEvent('onresize', resizeChart);
+        }
+        else {
+            window.resize = resizeChart;
+        }
+    }
+
+    // var Measurements = {{ measurements|safe }};
+    // google.charts.load('current', {packages: ['corechart', 'line']});
+    // google.charts.setOnLoadCallback(drawMeasurements);
+
+    // function drawMeasurements() {
+    //     data = new google.visualization.DataTable();
+    //     data.addColumn('string', 'Date');
+    //     data.addColumn('number', 'Chest');
+    //     data.addColumn('number', 'Waist');
+    //     data.addColumn('number', 'Hips')
+
+    //     newData = []
+    //     for (var i = 0; i < Measurements.length; i++) {
+    //         newData.push([Measurements[i]['date'], Measurements[i]['chest'], Measurements[i]['waist'], Measurements[i]['hips']]);
+    //     }
+
+
+    // Validate input
+    window.onsubmit = function validateInput(){
+            var weight = document.getElementById("weight").value;
+            var chest = document.getElementById("chest").value;
+            var waist = document.getElementById('waist').value;
+            var hips = document.getElementById('hips').value;
+            let input = document.querySelector('input');
+            // Check the input is not blank
+            if(weight == "")
+            {
+                alert('Please enter your weight');
+                document.getElementById('weight').focus();
+                return false;
+            }
+            else if(chest == "")
+            {
+                alert('Please enter your chest measurements');
+                document.getElementById('chest').focus();
+                return false;
+            }
+            else if(waist == "")
+            {
+                alert('Please enter your waist measurements');
+                document.getElementById('waist').focus();
+                return false;
+            }
+            else if(hips == "")
+            {
+                alert('Please enter your hips measurements');
+                document.getElementById('hips').focus();
+                return false;
+            }
+            // Check the input are positive numbers
+            else if (weight <= 0 || isNaN(weight) === true) {
+                alert('Weight must be a positive number in kg');
+                document.getElementById('weight').focus();
+                return false;
+            }
+            else if (chest <= 0 || isNaN(chest) === true) {
+                alert('Chest must be a positive number in kg');
+                document.getElementById('chest').focus();
+                return false;
+            }
+            else if (waist <= 0 || isNaN(waist) === true) {
+                alert('Waist must be a positive number in kg');
+                document.getElementById('waist').focus();
+                return false;
+            }
+            else if (hips <= 0 || isNaN(hips) === true) {
+                alert('Hips must be a positive number in kg');
+                document.getElementById('hips').focus();
+                return false;
+            }
+
+            return '';
+    }
+
+    </script>
+
+{% endblock %}

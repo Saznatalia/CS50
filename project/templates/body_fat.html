@@ -1,0 +1,154 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Body Fat Calculator
+{% endblock %}
+
+{% block main %}
+    <h1 style="padding-top: 19%; -webkit-text-stroke: 1px white;">BODY FAT CALCULATOR</h1>
+    <br/>
+    <input class="input" style="text-align: center; padding: 3px; background-color: #dcdcdc; border: 1px solid black" id="height" type="text" placeholder="Height, cm" />
+    <br />
+    <input class="input" style="text-align: center; padding: 3px; background-color: #dcdcdc; border: 1px solid black" id="neck" type="text" placeholder="Neck, cm" />
+    <br />
+    <input class="input" style="text-align: center; padding: 3px; background-color: #dcdcdc; border: 1px solid black" id="waist" type="text" placeholder="Waist, cm" />
+    <br />
+    <input class="input" style="text-align: center; padding: 3px; background-color: #dcdcdc; border: 1px solid black" id="hip" type="text" placeholder="Hip, cm" />
+    <br />
+    <input class="input" style="text-align: center; padding: 3px; background-color: #dcdcdc; border: 1px solid black" id="weight" type="text" placeholder="Weight, kg" />
+    <br />
+    <div class="index-text" style="text-align: center">
+        <input type="radio" id="male" name="gender" value="male"> Male
+        <input type="radio" id="female" name="gender" value="female"> Female
+    </div>
+    <input class ="index-text" type="submit" style="background-color: #90EE90" value="SUBMIT" onclick="body_fat()"/>
+    <br/>
+    <p id="result" style="background-color: #dcdcdc">RESULT</p>
+    <br/>
+    <table class="table" align=center style="background-color: #dcdcdc">
+    <thead>
+        <tr class="tr">
+            <th>Description</th>
+            <th>Women</th>
+            <th>Men</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Essential Fat</th>
+            <th>10-13%</th>
+            <th>2-5%</th>
+        </tr>
+        <tr>
+            <th>Athletes</th>
+            <th>14-20%</th>
+            <th>6-13%</th>
+        </tr>
+        <tr>
+            <th>Fitness</th>
+            <th>21-24%</th>
+            <th>14-17%</th>
+        </tr>
+        <tr>
+            <th>Average</th>
+            <th>25-31%</th>
+            <th>18-25%</th>
+        </tr>
+        <tr>
+            <th>Obese</th>
+            <th>32%+</th>
+            <th>25%+</th>
+        </tr>
+    </tbody>
+    </table>
+    <div class="index-text" style="background-color: #dcdcdc">
+    The scientific term for body fat is "adipose tissue." Adipose tissue serves a number of important functions.
+    Its primary purpose is to store lipids from which the body creates energy. In addition, it secretes a number
+    of important hormones, and provides the body with some cushioning as well as insulation. <br/>
+    Body fat includes essential body fat and storage body fat. Essential body fat is a base level of fat that is
+    found in most parts of the body. It is necessary fat that maintains life and reproductive functions. The amount
+    of essential fat differs between men and women, and is typically around 2-5% in men, and 10-13% in women.
+    The healthy range of body fat for men is typically defined as 8-19%, while the healthy range for women is 21-33%.
+    <br/>
+    Storage fat is fat that accumulates in adipose tissue, be it subcutaneous fat (deep under the dermis and wrapped
+    around vital organs) or visceral fat (fat located inside the abdominal cavity, between organs), and references to
+    body fat typically refer to this type of fat. While some storage fat is ideal, excess amounts of storage fat can
+    have serious negative health implications. <br/>
+    Excess body fat leads to the condition of being overweight and eventually to obesity given that insufficient measures
+    are taken to curb increasing body fat. Note that being overweight does not necessarily indicate an excess of body fat.
+    A person's body weight is comprised of multiple factors including (but not limited to) body fat, muscle, bone density,
+    and water content. Thus, highly muscular people are often classified as overweight. <br/>
+    There are many specific techniques used for measuring body fat. The calculator above uses a method involving equations
+    developed at the Naval Health Research Center by Hodgdon and Beckett in 1984. The method for measuring the relevant
+    body parts as well as the specific equations used are provided below: <br/>
+    <li>Measure the circumference of the subject's waist at a horizontal level around the navel for men, and at the level with
+    the smallest width for women. Ensure that the subject does not pull their stomach inwards to obtain accurate
+    measurements. </li>
+    <li>Measure the circumference of the subject's neck starting below the larynx, with the tape sloping downward to the front.
+    The subject should avoid flaring their neck outwards.</li>
+    <li>For women only: Measure the circumference of the subject's hips at the largest horizontal measure.</li>
+    Once these measurements are obtained, use the following formulas to calculate an estimate of body fat: <br/>
+    Males: BFP = (495/(1.0324 - 0.19077×log10(waist-neck) ) + 0.15456×log10(height)) - 450 <br/>
+    Female: BFP = (495/1.29579 - 0.35004×log10(waist+hip-neck) + 0.22100×log10(height)) - 450<br/>
+    Note that results of these calculations are only an estimate since they are based on many different assumptions to make
+    them as applicable to as many people as possible. For more accurate measurements of body fat, the use of instruments such
+    as bioelectric impedance analysis or hydrostatic density testing is necessary.
+
+    </div>
+
+
+    <script>
+    function body_fat(){
+        var male = document.getElementById("male")
+        var female = document.getElementById("female")
+        var height = Number(document.getElementById("height").value);
+        var neck = Number(document.getElementById("neck").value);
+        var waist = Number(document.getElementById("waist").value);
+        var hip = Number(document.getElementById("hip").value);
+        let input = document.querySelector('input');
+
+        if(height == "")
+        {
+            alert('Please enter your height in centimeters');
+            document.getElementById('height').focus();
+            return false;
+        }
+        else if(neck == "")
+        {
+            alert('Please enter your neck measurement in centimeters');
+            document.getElementById('neck').focus();
+            return false;
+        }
+        else if(waist == "")
+        {
+            alert('Please enter your waist measurement in centimeters');
+            document.getElementById('waist').focus();
+            return false;
+        }
+        else if(weight == "")
+        {
+            alert('Please enter your weight in kilograms');
+            document.getElementById('weight').focus();
+            return false;
+        }
+        if (female.checked)
+        {
+            if (hip == "")
+            {
+                alert('Please enter your hips measurement in centimeters');
+                document.getElementById('hip').focus();
+                return false;
+            }
+            var divisor = 1.29579 - (0.35004 * Math.log10(waist + hip - neck)) + (0.221 * Math.log10(height));
+            console.log(divisor)
+            var result = ((495/divisor) - 450).toFixed(1);
+            return document.getElementById("result").innerHTML = "Your Body Fat : " + result + "%";
+        }
+
+        var divisor = 1.0324 - (0.19077 * Math.log10(waist - neck)) + (0.15456 * Math.log10(height));
+        console.log(divisor)
+        var result = ((495/divisor) - 450).toFixed(1);
+        return document.getElementById("result").innerHTML = "Your Body Fat : " + result + "%";
+    }
+    </script>
+{% endblock %}

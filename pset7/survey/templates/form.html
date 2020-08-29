@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+    <h1 class="mb-3">Form</h1>
+
+    <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
+    <form action="/form" method="post" class="form">
+
+    <div class="form-row">
+        <div class="col">
+            <input autocomplete="off" id="name" type="text" name="name" class="form-control" placeholder="First name">
+        </div>
+        <div class="col">
+            <input autocomplete="off" id="last_name" type="text" name="last_name" class="form-control" placeholder="Last name">
+        </div>
+    </div>
+    <div class="age" >
+        <input id="age" type="number" name="age" placeholder="Age" min="1" max="100">
+    </div>
+    <div>Overnight stay required</div>
+    <div class="checkbox">
+        <input type="radio" id="yes" name="response" value="yes"> Yes <br>
+        <input type="radio" id="no" name="response" value="no"> No <br>
+    </div>
+        <select id="activity" name="activity" class="select">
+            <option value="" disabled selected>Activity</option>
+            <option>Running</option>
+            <option>Hiking</option>
+            <option>Surfing</option>
+            <option>Boxing</option>
+            <option>Skiing</option>
+        </select>
+        <!-- http://getbootstrap.com/docs/4.1/components/buttons/ -->
+    <div>
+        <button class="btn-primary" type="submit" value="Register">Submit</button>
+    </div>
+
+
+    </form>
+
+    <script>
+    document.querySelector('form').onsubmit = function(){
+            var regName = /^[a-zA-Z]+$/;
+            var regAge = /[1-9]?[0-9]{1}$|^100$/;
+            var name = document.getElementById('name').value;
+            var last_name = document.getElementById('last_name').value;
+            var age = document.getElementById('age').value;
+            if(!regName.test(name))
+            {
+                alert('Please enter your name');
+                document.getElementById('name').focus();
+                return false;
+            }
+            else if(!regName.test(last_name))
+            {
+                alert('Please enter your last name');
+                document.getElementById('last_name').focus();
+                return false;
+            }
+            else if(!regAge.test(age))
+            {
+                alert('Please select your age');
+                document.getElementById('age').focus();
+                return false;
+            }
+            else if (!document.getElementById('yes').checked && !document.getElementById('no').checked)
+            {
+                alert("You need to select an option");
+                document.getElementById('yes').focus();
+                return false;
+            }
+            return true;
+    }
+    </script>
+
+{% endblock %}
+
+

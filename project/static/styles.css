@@ -1,0 +1,171 @@
+nav .navbar-brand
+{
+    /* size for brand */
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.nav-item
+{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form-group
+{
+    margin-top: 1rem;
+}
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+.apology
+{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.containder
+{
+    max-width: 1080px;
+    padding-top: 1rem;
+    background-color: green;
+    margin: auto;
+
+}
+
+.index-text
+{
+
+    font-size: 20px;
+    font: Georgia;
+    text-align: left;
+    font-weight: 500;
+}
+
+.btn
+{
+  text-align: center;
+  background-color: #90EE90;
+  border: 2px solid black;
+  padding: 5px 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.calculator
+{
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.table
+{
+    margin-top: 10px;
+    border: 1px solid black;
+    width: 40%;
+    font-size: 18px;
+}
+
+.table th
+{
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.table thead th
+{
+    border-bottom: double black;
+}
+
+.input
+{
+    font-size: 20px;
+    font: Georgia;
+    text-align: left;
+    font-weight: 500;
+    margin: 2px;
+}
+
+#result {
+    margin: 3px auto;
+    border: double black;
+    font-size: 20px;
+    font: Georgia;
+    font-weight: 500;
+    padding: 2px;
+    text-align: center;
+    width: 50%;
+}
+
+input[type="radio"]{
+  margin: 0 8px 0 10px;
+}
+
+.left {
+    width: 50%;
+    float: left;
+    font-size: 20px;
+    font: Georgia;
+    text-align: left;
+    font-weight: 500;
+
+}
+
+.right {
+    width: 50%;
+    font-size: 20px;
+    float: right;
+    font: Georgia;
+    text-align: left;
+    font-weight: 500;
+
+}
+
+#products .ui-selecting {
+    background: #707070;
+}
+
+#products .ui-selected {
+    background: #EEEEEE;
+    color: #000000;
+}
+
+#products {
+    position: absolute;
+    margin: 0;
+    padding-left: 40px;
+    text-align: left;
+}
+
+table, tr, td {
+  border: 1px solid black;
+  text-align: center;
+  padding: 5px;
+}
+
+table {
+    min-width: 90%;
+}
+

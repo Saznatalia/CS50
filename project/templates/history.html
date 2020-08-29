@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+
+    <h1 style="padding-top: 19%; -webkit-text-stroke: 1px white;">HISTORY</h1>
+    <div class="ui-widget" style="background-color: #dcdcdc; min-height: 130px; text-align: center; padding-bottom: 20px">
+    <br/>
+    <table class="table table-striped" align=center>
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Size</th>
+            <th>Unit</th>
+            <th>Meal</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for element in records %}
+        <tr>
+            <td>{{ element["item"] }}</td>
+            <td>{{ element["size"] }}</td>
+            <td>{{ element["unit"] }}</td>
+            <td>{{ element["meal"] }}</td>
+            <td>{{ element["date"] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    </table>
+
+
+
+
+{% endblock %}

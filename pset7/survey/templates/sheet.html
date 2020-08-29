@@ -1,0 +1,34 @@
+
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <h1>Survey</h1>
+    <table id="survey_table" class="table">
+        <thread>
+            <tr>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Activity</th>
+                <th>Overnight</th>
+            </tr>
+        </thread>
+
+        <tbody>
+        {% for item in result %}
+            {% if loop.index < result|length %}
+                <tr>
+                    <td>{{ result[loop.index][0] }}</td>
+                    <td>{{ result[loop.index][1] }}</td>
+                    <td>{{ result[loop.index][2] }}</td>
+                    <td>{{ result[loop.index][3] }}</td>
+                    <td>{{ result[loop.index][4] }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+
+{% endblock %}
+
+

@@ -1,0 +1,69 @@
+body
+{
+    height:100vh;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #505050;
+}
+
+.topbar
+{
+    position: fixed;
+    height: 63px;
+    background-color: black;
+    width: 800px;
+}
+
+.logo
+{
+    float: left;
+    padding: 0px 10px;
+    line-height: 50px;
+}
+
+.nav
+{
+    float: right;
+    padding-top: 20px;
+}
+
+.nav a
+{
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: white;
+    font-family: Georgia;
+}
+
+.nav a:hover
+{
+  background: #808080;
+}
+
+
+.float-image
+{
+
+    padding: 10px;
+}
+
+.content
+{
+    transition: 1s all ease-out;
+    height:100vh;
+    text-align: center;
+    padding: 65px 10px;
+    background-color: lightgrey;
+    font-size: 17px;
+    font-family: Georgia;
+}
+
+footer {
+    position: absolute;
+    text-align: left;
+    bottom: 0;
+    font-size: small;
+}

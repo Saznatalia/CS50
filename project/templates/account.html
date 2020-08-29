@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account
+{% endblock %}
+
+{% block main %}
+
+    <h1 style="padding-top: 19%; -webkit-text-stroke: 1px white;">Account</h1>
+    <form action="/password" method="post" class="password">
+        <div class="ui-widget" style="background-color: #dcdcdc; min-height: 250px">
+            <p class="left" style="text-align: center">
+                User: {{ username }}
+                <br/>
+                Weight: {{ weight }}
+            </p>
+            <p class='right' style="text-align: center">
+                Today: {{ today }}
+                <br/>
+                <br/>
+            </p>
+            CHANGE PASSWORD
+            <br/>
+            <input class="form-control" name="new_password" id = "new_password" placeholder="New Password" type="password">
+            <br/>
+            <input class="form-control" name="new_confirmation" id = "new_confirmation" placeholder="Confirm Password" type="password">
+            <br/>
+            <button type="submit">Change</button>
+        </div>
+    </form>
+    <script>
+    window.onsubmit = function validateInput(){
+            var password = document.getElementById("new_password").value;
+            var confirmation = document.getElementById("new_confirmation").value;
+            let input = document.querySelector('input');
+            if(password == "")
+            {
+                alert('Please enter new password');
+                document.getElementById('password').focus();
+                return false;
+            }
+            else if(confirmation == "")
+            {
+                alert('Please enter confirmation of your new password');
+                document.getElementById('confirmation').focus();
+                return false;
+            }
+            return true;
+    };
+    </script>
+
+{% endblock %}

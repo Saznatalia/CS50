@@ -1,0 +1,128 @@
+body
+{
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #505050;
+}
+
+.topbar
+{
+    position: fixed;
+    height: 63px;
+    background-color: black;
+    width: 800px;
+}
+
+.logo
+{
+    float: left;
+    padding: 0px 10px;
+    line-height: 50px;
+}
+
+.nav
+{
+    float: right;
+    padding-top: 20px;
+}
+
+.nav a
+{
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: white;
+    font-family: Georgia;
+}
+
+.nav a:hover
+{
+  background: #808080;
+}
+
+.content
+{
+    background-color: lightgrey;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+h1
+{
+    text-align: center;
+    font-weight: bold;
+    padding-top: 70px;
+}
+
+h2
+{
+    padding-left: 10px;
+    text-align: left;
+    color: #2E8B57;
+    font-weight: bold;
+    font-size: 25px;
+    border-bottom: 3px solid black;
+    border-radius: 0.5px;
+    margin: 10px;
+}
+
+.skills
+{
+    list-style-type: none;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}
+
+h3
+{
+    display: inline-block;
+    padding-left: 10px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.year
+{
+    padding-right: 10px;
+    float: right;
+}
+
+h4
+{
+    padding-left: 10px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.button
+{
+    text-align: center;
+}
+
+.btn
+{
+  text-align: center;
+  background-color: #2E8B57;
+  border: 2px solid black;
+  padding: 5px 5px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.btn:hover
+{
+  background-color: DarkGreen;
+}
+
+footer
+{
+    text-align: left;
+    bottom: 0;
+    font-size: small;
+}

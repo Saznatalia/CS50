@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Registered
+{% endblock %}
+
+{% block main %}
+
+    <form action="/registered" method="post" class="registered">
+    <div class="alert alert-primary border text-center" role="alert"> REGISTERED!</div>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>TOTAL</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td>CASH</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td> {{ cash }}</td>
+        </tr>
+        <tr style="font-weight: bold">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ cash }}</td>
+        </tr>
+    </tfoot>
+    <tbody>
+
+    </tbody>
+    </table>
+
+{% endblock %}

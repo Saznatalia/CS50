@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Food Blocks
+{% endblock %}
+
+{% block main %}
+    <h1 style="padding-top: 18.5%; -webkit-text-stroke: 1px white;">FOOD BLOCKS</h1>
+    <h2 style="text-align: left">PROTEINS</h2>
+    <div class="index-text">
+        <ul>
+            <li>Lean meat including chicken, beef, turkey</li>
+            <li>Low-fat dairy products: yogurt, milk, kefir, cottage cheese, etc.</li>
+            <li>Fish</li>
+            <li>Eggs</li>
+            <li>Prawns, oysters, mussels</li>
+            <li>Low-fat cheese</li>
+        </ul>
+
+    <h2>CARBOHYDRATES</h2>
+    <div class="index-text">
+        <ul>
+            <li>Vegetables</li>
+            <li>Fruits</li>
+            <li>Berries</li>
+            <li>Alcohol (once a week)</li>
+        </ul>
+
+    <h2>FATS</h2>
+    <div class="index-text">
+        <ul>
+            <li>Low-fat mayonnaise or sour cream</li>
+            <li>Oils</li>
+            <li>Nuts</li>
+            <li>Olives</li>
+            <li>Avocado</li>
+            <li>Butter</li>
+        </ul>
+    </div>
+    <a href="static/Blocks.pdf" download="static/Blocks.pdf" style="text-align: center">
+        <div class="button">
+            <button class=btn>Download PDF</button>
+        </div>
+    </a>
+{% endblock %}

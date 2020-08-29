@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <form action="/calculators" method="post" class=calculators>
+        <div class="container">
+            <h1 style="padding-top: 19%; -webkit-text-stroke: 1px white;">HEALTH CALCULATORS</h1>
+            <a href="/bmi"><img class="calculator" border=0 alt="image1" src="static/image1.jpg"></a>
+            <a href="/ideal_weight"><img class="calculator" border=0 alt="image2" src="static/image2.jpg"></a>
+            <a href="/body_fat"><img class="calculator" border=0 alt="image3" src="static/image3.jpg"></a>
+            <a href="/kcal_intake"><img class="calculator" border=0 alt="image4" src="static/image4.jpg"></a>
+        </div>
+    </form>
+{% endblock %}

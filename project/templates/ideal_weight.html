@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Ideal Weight Calculator
+{% endblock %}
+
+{% block main %}
+    <h1 style="padding-top: 19%; -webkit-text-stroke: 1px white;">IDEAL WEIGHT CALCULATOR</h1>
+    <br/>
+    <input class="input" style="text-align: center; padding: 3px;background-color: #dcdcdc; border: 1px solid black" id="height" type="text" placeholder="Height, cm" />
+    <br />
+    <div class="index-text" style="text-align: center">
+        <input type="radio" id="male" name="gender" value="male"> Male
+        <input type="radio" id="female" name="gender" value="female"> Female
+    </div>
+    <input class ="index-text" type="submit" style="background-color: #90EE90" value="SUBMIT" onclick="ideal_weight()"/>
+    <br/>
+    <p id="result" style="background-color: #dcdcdc">RESULT</p>
+    <br/>
+    <div class="index-text" style="background-color: #dcdcdc">
+        How much a person should weigh is not an exact science. It is highly dependent on each individual.
+        Thus far, there is no measure, be it Ideal Body Weight (IBW), body mass index (BMI), or any other that can
+        definitively state how much a person should weigh to be healthy. They are only references, and it's more
+        important to adhere to making healthy life choices such as regular exercise, eating a variety of unprocessed
+        foods, getting enough sleep, etc. than it is to chase a specific weight based on a generalized formula.
+        IBW formulas were developed mainly to facilitate drug dosage calculations.
+    </div>
+    <div class="index-text" style="background-color: #dcdcdc">
+        Estimate IBW in (kg): <br/>
+        Males: IBW = 50 kg + 2.3 kg for each inch (2.54cm) over 5 feet (152.4cm) <br/>
+        Females: IBW = 45.5 kg + 2.3 kg for each inch (2.54cm) over 5 feet (152.4cm)
+    </div>
+
+    <script>
+    function ideal_weight() {
+        var male = document.getElementById("male")
+        var female = document.getElementById("female")
+        var height = Number(document.getElementById("height").value);
+        let input = document.querySelector('input');
+
+        if(height == "")
+        {
+            alert('Please enter your height in centimeters');
+            document.getElementById('height').focus();
+            return false;
+        }
+        else if(height > 500)
+        {
+            alert("Please enter your height in centimeters")
+            document.getElementById('height').focus();
+            return false;
+        }
+
+        if(male.checked)
+        {
+            var height_difference = height - 152.4;
+            var diff = (height_difference / 2.54).toFixed(0);
+            var result = (50.0 + 2.3 * diff).toFixed(1);
+            return document.getElementById("result").innerHTML = "Your IBW : " + result;
+        }
+
+        if(female.checked)
+        {
+            var height_difference = height - 152.4;
+            var diff = (height_difference / 2.54).toFixed(0);
+            var result = (45.5 + 2.3 * diff).toFixed(1);
+            return document.getElementById("result").innerHTML = "Your IBW : " + result;
+        }
+    };
+
+    </script>
+{% endblock %}

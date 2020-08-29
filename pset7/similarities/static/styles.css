@@ -1,0 +1,84 @@
+/* Fill viewport, hide scroll bar */
+html, body
+{
+    height: 100%;
+    overflow: hidden;
+}
+
+label {
+    margin-bottom: 0;
+}
+
+/* Ensure content is below navbar */
+div.container-fluid
+{
+    padding-top: 56px;
+}
+
+/* Fill viewport */
+div.container-fluid, row, col, jumbotron
+{
+    height: 100%;
+}
+
+/* Remove padding within column */
+col
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Add padding around form */
+form
+{
+    padding: 15px;
+}
+
+/* Wrap and scroll preformatted text */
+pre
+{
+    height: 100%;
+    overflow: auto;
+    padding: 15px;
+    white-space: pre-wrap;
+}
+
+/* Highlight spans */
+span
+{
+    background-color: #ff0;
+}
+
+
+.col
+{
+    font: italic bold 15px/18px Georgia;
+}
+
+.radio
+{
+    font: 15px Arial;
+    padding: 2px;
+}
+
+.number
+{
+    padding-left: 20px;
+    padding-top: 5px;
+}
+
+.button
+{
+    padding-top: 10px;
+    background-color: #4CAF50;
+    border: 2px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px 15px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

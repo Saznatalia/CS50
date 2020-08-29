@@ -1,0 +1,207 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Recipes
+{% endblock %}
+
+{% block main %}
+
+    <h1 style="padding-top: 19%; -webkit-text-stroke: 1px white;">MY RECIPES</h1>
+    <div class="ui-widget" style="background-color: #dcdcdc; margin-top: 20px; min-height: 130px; text-align: center">
+        <h4 style="text-align: center; position: relative">CREATE AND SAVE MEAL</h4>
+        <input  id="meal_name" name="meal_name" placeholder="Meal Name" type="text" style="min-width: 300px; position: relative">
+        <br/>
+        <br/>
+        <input  id="food" name="food" placeholder="Search" type="text" style="min-width: 300px; position: relative">
+        <input id="food_size" name="size" placeholder="Serving Size" type="text" style="min-width: 50px; position: relative">
+        <input id="food_unit" name="food_unit" placeholder="units" type="text" style="max-width: 40px; position: relative"disabled>
+        <br/>
+        <br/>
+        <button style="background-color: #90EE90; font-weight: bold;margin-left: 30px" type="submit" onclick="log_food()">Add</button>
+        <br/>
+        <br/>
+        <div align="center">
+            <table id="FoodTable" style="margin: auto">
+                <thead>
+                    <tr>
+                        <td rowspan="2">Food</td>
+                        <td rowspan="2">Serve</td>
+                        <td rowspan="2">Units</td>
+                        <td colspan="3">Blocks</td>
+                        <td rowspan='2'> </td>
+                    </tr>
+                    <tr>
+                        <td>Carbs</td>
+                        <td>Proteins</td>
+                        <td>Fats</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in food_records %}
+                    <tr>
+                        <td>{{ item['item'] }}</td>
+                        <td>{{ item['size'] }}</td>
+                        <td>{{ item['unit'] }}</td>
+                        <td>{{ item['carb'] }}</td>
+                        <td>{{ item['protein'] }}</td>
+                        <td>{{ item['fat'] }}</td>
+                        <td><button id='delete_food'style="" type="submit" onclick="delete_food(this)">x</button></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        <br/>
+        <button style="background-color: #90EE90; font-weight: bold;margin-left: 30px" type="submit" onclick="save_food()">Save Recipe</button>
+        </div>
+    </div>
+
+
+
+<script>
+// AUTOCOMPLETE FOR EARCH OF PRODUCTS
+var availableProducts = {{ items|safe }};
+$("#food").autocomplete({
+    minLength: 2,
+    source: function( request, response ) {
+        var result = availableProducts.filter(function(item) {
+            return item.item.toLowerCase().startsWith(request.term.toLowerCase());
+        });
+        console.log(result);
+        result = result.map(function(r) { return {label: r.item.toLowerCase(), value: r}});
+        response( result );
+        },
+    select: function( event, ui ){
+        event.preventDefault();
+        $(this).val(ui.item.value.item);
+        $("#food_unit").val(ui.item.value.unit);
+    },
+});
+
+// LOGGING THE FOOD INTO THE MEAL
+function log_food() {
+    // SET THE VARIABLES
+    var availableProducts = {{ items|safe }};
+    var availableProductsList = []
+    for (var i = 0; i < availableProducts.length; i++) {
+        availableProductsList.push(availableProducts[i]['item'].toLowerCase())
+    }
+    var meal_name = document.getElementById("meal_name").value.toLowerCase();
+    var food = document.getElementById("food").value.toLowerCase();
+    var size = document.getElementById("food_size").value;
+    var unit = document.getElementById("food_unit").value;
+    var table = document.getElementById("FoodTable");
+    var delete_button = document.createElement('input');
+    // SET INPUT ATTRIBUTE.
+    delete_button.setAttribute('type', 'button');
+    delete_button.setAttribute('value', 'x');
+    // ADD THE BUTTON's 'onclick' EVENT.
+    delete_button.setAttribute('onclick', 'delete_food(this)');
+
+    // CHECK THAT ENTRY IS NOT EMPTY
+    if (food == "") {
+        event.preventDefault();
+        alert('Please enter your food');
+        document.getElementById('food').focus();
+        return false;
+    }
+
+    //VALIDATION OF MEAL_NAME
+    if (meal_name == "") {
+        event.preventDefault();
+        alert('Please enter your meal name');
+        document.getElementById('meal_name').focus();
+        return false;
+    }
+
+    // VALIDATION OF SIZE INPUT
+    if (size == '') {
+        event.preventDefault();
+        alert('Please enter serving size');
+        document.getElementById('food_size').focus();
+        return false;
+    }
+
+    // CHECK IF PRODUCT IS FROM THE LIST
+    else if (availableProductsList.includes(food) === false) {
+        event.preventDefault();
+        alert('Product was not found, try again');
+        document.getElementById('food_size').focus();
+        document.getElementById("food").value = '';
+        document.getElementById("food_unit").value = 'units';
+        document.getElementById("food_size").value = '';
+        document.getElementById('food').focus();
+        return false;
+    }
+
+    // VALIDATION OF SIZE INPUT
+    else if (size < 0 || isNaN(size) === true) {
+        event.preventDefault();
+        alert('Please enter positive number of serving size');
+        document.getElementById('food_size').focus();
+        document.getElementById("food_size").value = '';
+        document.getElementById('food_size').focus();
+        return false;
+    }
+
+    // FILLING THE TABLE
+    for (var i = 0; i < availableProducts.length; i++) {
+        if (availableProducts[i].item.toLowerCase() == food) {
+            // ADD DATA TO THE TABLE
+            var row_count = table.rows.length;
+            var row = table.insertRow(row_count);
+            var food_data = row.insertCell(0);
+            var size_data = row.insertCell(1);
+            var unit_data = row.insertCell(2);
+            var carb_data = row.insertCell(3);
+            var protein_data = row.insertCell(4);
+            var fat_data = row.insertCell(5);
+            var delete_button_data = row.insertCell(6);
+            food_data.innerHTML = food;
+            size_data.innerHTML = size;
+            unit_data.innerHTML = unit;
+            blocks = parseFloat(size) / parseFloat(availableProducts[i].amount);
+            var carb = (parseFloat(availableProducts[i].carb) * blocks).toFixed(0);
+            var protein = (parseFloat(availableProducts[i].protein) * blocks).toFixed(0);
+            var fat = (parseFloat(availableProducts[i].fat) * blocks).toFixed(0);
+            carb_data.innerHTML = carb;
+            protein_data.innerHTML = protein;
+            fat_data.innerHTML = fat;
+            delete_button_data.appendChild(delete_button);
+            break;
+        }
+    }
+
+    // PASS THE DATA TO THE SERVER
+    const data = {
+        "item": food,
+        "protein": protein,
+        "carb": carb,
+        "fat": fat,
+        "amount": size,
+        "unit": unit,
+        "meal_name": meal_name
+    }
+    fetch('/add_user_item', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+    document.getElementById("food").value = '';
+    document.getElementById("food_unit").value = 'units';
+    document.getElementById("food_size").value = '';
+
+}
+
+
+
+
+
+</script>
+
+{% endblock %}

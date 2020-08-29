@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+    <form action="/index" method="post" class="index">
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>TOTAL</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td>CASH</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td> {{ cash }}</td>
+        </tr>
+        <tr style="font-weight: bold">
+            <td>TOTAL</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ grand_total }}</td>
+        </tr>
+    </tfoot>
+    <tbody>
+        {% for element in owned_shares %}
+        <tr>
+            <td>{{ element["symbol"] }}</td>
+            <td>{{ element["company"] }}</td>
+            <td>{{ element["number"] }}</td>
+            <td>{{ element["price"] }}</td>
+            <td>{{ element["total"] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+
+{% endblock %}
